@@ -15,10 +15,6 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction func getParse() {
-        fetchHero()
-    }
-    
-    private func fetchHero() { // хотел сделать сразу в методе кнопки, но боюсь, что это будет ошибкой
         let connection = URL(string: "https://rickandmortyapi.com/api/character/108")!
         
         URLSession.shared.dataTask(with: connection) { data,_ ,error in
@@ -26,9 +22,15 @@ final class MainViewController: UIViewController {
                 print(error?.localizedDescription ?? "No error description")
                 return
             }
-            let decoder = JSONDecoder()
-            let hero = try? decoder.decode(Hero.self, from: data)
-            print(hero ?? "")
+            
+            do {
+                let decoder = JSONDecoder()
+                let hero = try decoder.decode(Hero.self, from: data)
+                print(hero)
+            } catch {
+                print(error.localizedDescription )
+            }
+            
         }.resume()
     }
 }

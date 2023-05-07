@@ -5,6 +5,8 @@
 //  Created by Рома Баранов on 06.05.2023.
 //
 
+import Foundation
+
 struct Hero: Decodable {
     let id: Int
     let name: String
@@ -12,16 +14,19 @@ struct Hero: Decodable {
     let species: String
     let type: String
     let gender: String
-    let origin: Name
-    let location: Name
-    let image: String
-    let episode: [String]
-    let url: String
+    let origin: Origin
+    let location: Location
+    let image: URL
+    let episode: [URL]
+    let url: URL
     let created: String
 }
-struct Name: Decodable {
+struct Origin: Decodable {
     let name: String
     let url: String
 }
 
-
+struct Location: Decodable {
+    let name: String
+    let url: URL
+}
