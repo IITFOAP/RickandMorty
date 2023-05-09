@@ -8,30 +8,23 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    @IBOutlet var namelessButton: UIButton!
+  
+    private let networkManager = NetworkManager.shared
     
-    override func viewDidLayoutSubviews() {
-        namelessButton.layer.cornerRadius = namelessButton.frame.width / 2
-    }
     
-    @IBAction func getParse() {
-        let connection = URL(string: "https://rickandmortyapi.com/api/character/108")!
-        
-        URLSession.shared.dataTask(with: connection) { data,_ ,error in
-            guard let data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let hero = try decoder.decode(Hero.self, from: data)
-                print(hero)
-            } catch {
-                print(error.localizedDescription )
-            }
-            
-        }.resume()
-    }
+    
+//    @IBAction func getParse() {
+//        let connection = URL(string: "https://rickandmortyapi.com/api/character/108")!
+//        
+//        networkManager.fetch(Hero.self, from: connection) { result in
+//            switch result {
+//            case .success(let hero):
+//                print(hero)
+//            case .failure(let error):
+//                print(error)
+//            }
+//            
+//        }
+//    }
 }
 

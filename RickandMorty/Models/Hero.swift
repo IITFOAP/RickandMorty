@@ -8,25 +8,23 @@
 import Foundation
 
 struct Hero: Decodable {
-    let id: Int
     let name: String
     let status: String
     let species: String
-    let type: String
     let gender: String
-    let origin: Origin
-    let location: Location
+    let location: Place
     let image: URL
-    let episode: [URL]
-    let url: URL
-    let created: String
 }
-struct Origin: Decodable {
+
+struct Place: Decodable {
     let name: String
-    let url: String
+    let url: URL
 }
 
 struct Location: Decodable {
     let name: String
-    let url: URL
+    let type: String
+    let dimension: String
 }
+
+
