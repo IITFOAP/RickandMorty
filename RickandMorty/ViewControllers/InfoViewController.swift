@@ -35,7 +35,6 @@ final class InfoViewController: UIViewController {
             switch result {
             case .success(let location):
                 self?.location = location
-                print(self?.location ?? "")
                 self?.updateInfoText()
             case .failure(let error):
                 print(error)
