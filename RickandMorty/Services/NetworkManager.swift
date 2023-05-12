@@ -9,21 +9,25 @@ import Foundation
 
 enum Link: CaseIterable {
     case firstHero
-    case secondHero
-    case thirdHero
-    case fourthHero
     
-    var url: URL {
+    var url: [URL] {
         switch self {
         case .firstHero:
-            return URL(string: "https://rickandmortyapi.com/api/character/105")!
-        case .secondHero:
-            return URL(string: "https://rickandmortyapi.com/api/character/108")!
-        case .thirdHero:
-            return URL(string: "https://rickandmortyapi.com/api/character/150")!
-        case .fourthHero:
-            return URL(string: "https://rickandmortyapi.com/api/character/177")!
+            return urls
         }
+    }
+    
+    private var urls: [URL] {
+        var total: [URL] = []
+        
+        func givesValue() {
+            for number in 71...121 {
+                total.append(URL(string: "https://rickandmortyapi.com/api/character/\(number)")!)
+            }
+        }
+        
+        givesValue()
+        return total
     }
 }
 

@@ -31,7 +31,7 @@ final class InfoViewController: UIViewController {
     
     // MARK: - Private Methods
     private func fetchLocation() {
-        networkManager.fetch(Location.self, from: hero.location.url) { [weak self] result in
+        networkManager.fetch(Location.self, from: (hero.location.url ?? Link.firstHero.url.randomElement())!) { [weak self] result in
             switch result {
             case .success(let location):
                 self?.location = location
@@ -50,7 +50,6 @@ final class InfoViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
-            
         }
     }
     
